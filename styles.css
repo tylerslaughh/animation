@@ -1,0 +1,282 @@
+/* This changes three of the default styles and many webdesigners include this in the top of every style they create. */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+:root {
+    --body: #ff533e;
+    --mouth: #000000;
+    --feather: #939393;
+    --beak-top: #e9581a;
+    --beak-down: #aa4c21;
+    --leg: #00adef;
+    --body-color: #e3edf7;
+}
+
+body {
+    background: var(--body-color);
+    font-family: sans-serif;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    width: 400px;
+    height: 400px;
+    position: relative;
+}
+
+ .body,  .mouth,  .feather,  .tail, .beak, .mouth::before, .mouth::after, .leg, .leg::after, .leg::before {
+    position: absolute;
+}
+ .body,  .mouth, .feather, .beak, .mouth::before, .mouth::after  {
+    border-radius: 50%;
+}
+
+.body {
+    top: 26px;
+    left: 50px;
+    height: 180px;
+    width: 200px;
+    transform: rotate(-17deg);
+    background: linear-gradient(to bottom, transparent 0%, transparent 20%, var(--body) 20%);
+    z-index: 2;
+}
+
+.mouth {
+    background:  var(--mouth);
+    top: 20px;
+    left: -175px;
+    width: 100px;
+    height: 100px;
+    transform: rotate(-17deg);
+    z-index: 5;
+    animation: animate-mouth 1.5s forwards;
+    animation-delay: 2s;
+}
+
+@keyframes animate-mouth {
+    100% {
+        left: 175px;
+    }
+}
+.mouth::before {
+    content: "";
+    width: 30px;
+    height: 30px;
+    background: white;
+    position: absolute;
+    top: 20px;
+    left: 40px;
+}
+.mouth::after {
+    content: "";
+    width: 10px;
+    height: 10px;
+    background: black;
+    position: absolute;
+    top: 30px;
+    left: 55px;
+    animation: animate-eye 1s infinite;
+    animation-delay: 4s;
+}
+
+@keyframes animate-eye {
+    50% {
+        height: 5px;
+    }
+}
+
+
+.feather {
+    z-index: 4;
+    left: 44px;
+    top: -206px;
+    width: 150px;
+    height: 150px;
+    background: linear-gradient(to bottom, transparent 0%, transparent 50%, var(--feather) 50%);
+    transform: rotate(-17deg);
+    animation: animate-feather 1.5s forwards;
+    animation-delay: 2s;
+}
+
+@keyframes animate-feather {
+    100% {
+        top: -6px;
+    }
+}
+
+.tail {
+    width: 150px;
+    height: 60px;
+    background-color: var(--mouth);
+    clip-path: polygon(0% 0%, 100% 0%, 100% 100%);
+    top: 92px;
+    left: 324px;
+    transform: rotate(-17deg);
+    z-index: 3;
+    animation: animate-tail 1.5s forwards;
+    animation-delay: 2s;
+}
+@keyframes animate-tail {
+    100% {
+        left: -24px;
+    }
+}
+.beak {
+    height: 100px;
+    width: 100px;
+    background: linear-gradient(to bottom, var(--beak-top) 0%, var(--beak-top) 15%, transparent 15% );
+    left: 224px;
+    top: 240px;
+    z-index: -1;
+    transform: rotate(-17deg);
+    animation: animate-beak 1.5s forwards;
+    animation-delay: 2s;
+}
+@keyframes animate-beak {
+    100% {
+        top: 40px;
+    }
+}
+.leg {
+    background: var(--leg);
+    height: 50px;
+    width: 10px;
+    border-radius: 10px;
+    top: 515px;
+    left: 125px;
+    transform: rotate(-15deg);
+    z-index: 1;
+    animation: animate-leg 1.5s forwards;
+    animation-delay: 2s;
+}
+@keyframes animate-leg {
+    100% {
+        top: 215px;
+    }
+}
+.leg::before {
+    bottom: -8px;
+    content: "";
+    width: 40px;
+    height: 9px;
+    background: var(--leg);
+    border-radius: 10px;
+    transform: rotate(15deg);
+    z-index: -1;
+}
+.leg::after {
+    top: -8px;
+    content: "";
+    width: 30px;
+    height: 9px;
+    background: var(--leg);
+    border-radius: 10px;
+    transform: rotate(-15deg);
+    z-index: -1;
+}
+.container {
+  max-width: 800px;
+  margin: auto;
+}
+.row {
+  margin: 32px;
+  border: .5px solid lightpink;
+  min-height: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.square {
+  width: 100px;
+  height: 100px;
+  background: turquoise;
+  position: absolute;
+  animation: 1s linear 1s infinite alternate slidein;
+  animation-name: my_anime1;
+  animation-duration: infinite;
+  animation-fill-mode: backwards;
+  mix-blend-mode: multiply;
+}
+#square2, #square3, #square4 {
+  background: darkblue;
+  border-radius: 8px;
+  transform: skewY(15deg) translate(40px, 20px);
+}
+
+@keyframes my_anime1 {
+  0% {
+    opacity: 0;
+    transform: skewY(10deg) translate(0px, 0px);
+  }
+  100% {
+    opacity: 1;
+    transform: skewY(15deg) translate(40px, 15px);
+    width: 90px;
+  }
+}
+
+#square3 {
+  opacity: 0;
+  animation-name: my_anime1;
+  animation-duration: 3s;
+  animation-delay: 1s;
+  animation-fill-mode: backwards;
+  background: purple;
+}
+
+@keyframes my_anime2 {
+  0% {
+    opacity: 0;
+    transform: skewY(0deg) translate(0px, 0px);
+  }
+  50% {
+    opacity: 1;
+    transform: skewY(15deg) translate(40px, 15px);
+    width: 90px;
+  }
+  100% {
+    opacity: 1;
+    transform: skewY(0deg) translate(40px, 30px);
+    border-radius: 50%;
+    width: 100px;
+  }
+}
+
+#square4 {
+  opacity: 0;
+  animation-name: my_anime2;
+  animation-direction: alternate-reverse;
+  animation-iteration-count: infinite;
+  animation-duration: 2s;
+  animation-delay: 2s;
+  animation-fill-mode: sideways;
+  background: teal;
+}
+
+@keyframes my_anime3 {
+  to {
+    border-radius: 0%;
+    background: magenta;
+  }
+}
+
+#square5 {
+  opacity: 0;
+  animation: my_anime2 4s 0s,
+             my_anime3 2s 4s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  animation-fill-mode: backwards;
+  background: deepskyblue;
+}
